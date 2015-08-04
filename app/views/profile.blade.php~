@@ -1,0 +1,51 @@
+@extends('layout')
+@section('content')
+    <div class="row">
+		<div class="col s12">
+			<h1 class="page-header">Profile of {{{$user->name}}}</h1>
+		</div>
+		<!-- /.col-lg-12 -->		
+	</div>
+	<div class="row">
+	
+			<div class="col s12 m6">
+			  <div class="card green lighten-2">
+				<div class="card-content white-text">
+				 <table>
+					<tr><td>Name</td><td>{{{$user->name}}}</td></tr>
+					<tr><td>Username</td><td>{{{$user->username}}}</td></tr>
+					<tr><td>Office</td><td>{{{$user->office}}}</td></tr>
+					<tr><td>District</td><td>{{{$user->district->name}}}</td></tr>
+					<tr><td>Circle</td><td>{{{$user->circle->name}}}</td></tr>
+				 </table>
+				</div>
+				
+			  </div>
+			</div>	
+			<div class="col s12 m6">
+			  <div class="card red lighten-2">
+				<div class="card-content white-text">
+					  <h3>Change Password</h3>
+					  <div class="input-field">
+						<label for="pwd" class="white-text">New Password</label>
+						<input type="password" class="form-control" id="pwd" name="pwd">
+						<a href="#" class="green waves-effect waves-light white-text btn-flat" id="changeBtn">Change</a>
+					  </div>
+				</div>
+				
+			  </div>
+			</div>	
+			
+                
+	</div>
+@stop
+@section('script')
+<script>
+	$("#changeBtn").click(function(){
+		$.post("/user/{{{$user->id}}}/update",{pwd:$('#pwd').val},function(data){
+			alert("Password changed with "+data);
+			//window.location.replace("/ack/"+data.application);
+		});
+	});
+</script>
+@stop

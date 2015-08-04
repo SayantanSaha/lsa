@@ -1,0 +1,12 @@
+<?php
+class RemainingLand extends Eloquent{
+
+	
+	protected $table = 'remaining_land';
+	
+	public function seller()
+    {
+        return $this->belongsTo('Application');
+    }
+	
+}
